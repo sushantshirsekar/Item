@@ -1,13 +1,13 @@
 let form = document.querySelector('#addForm');
 let ul = document.getElementById('items');
 var filter = document.getElementById('search');
-var filter1 = document.getElementById('search');
+var filter = document.getElementById('search');
 
 form.addEventListener('submit', addItem);
 ul.addEventListener('click', deleteItem);
 ul.addEventListener('click', editItem);
 filter.addEventListener('keyup', searchItems);
-filter1.addEventListener('keyup', searchDesc);
+
 function addItem(e)
 {
     let newItem = document.getElementById('inputText').value;
@@ -61,7 +61,12 @@ function searchItems(e)
     let itmli = ul.getElementsByTagName('li');
     Array.from(itmli).forEach(function(item){
         var itmName = item.firstChild.textContent;
+        var itmName1 = item.childNodes[1].textContent;
         if(itmName.toLowerCase().indexOf(text) != -1)
+        {
+            item.style.display = 'block';
+        }
+        else if(itmName1.toLowerCase().indexOf(text) != -1)
         {
             item.style.display = 'block';
         }
@@ -72,22 +77,3 @@ function searchItems(e)
     })
 }
 
-function searchDesc(e)
-{
-    let text1 = e.target.value.toLowerCase();
-    console.log(text1);
-    let itmli1 = ul.getElementsByTagName('li');
-    Array.from(itmli1).forEach(function(item1){
-        var itmName1 = item1.childNodes[1].textContent;
-        if(itmName1.toLowerCase().indexOf(text1) != -1)
-        {
-            item1.style.display = 'block';
-        }
-        else
-        {
-            item1.style.display = 'none';
-        }
-    })
-
-    
-}
